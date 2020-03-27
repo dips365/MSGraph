@@ -1,0 +1,19 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "react-group-samples-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/reactGroupSamples/ReactGroupSamplesWebPart.js",
+          "manifest": "./src/webparts/reactGroupSamples/ReactGroupSamplesWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "ReactGroupSamplesWebPartStrings": "lib/webparts/reactGroupSamples/loc/{locale}.js",
+    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js"
+  }
+}
