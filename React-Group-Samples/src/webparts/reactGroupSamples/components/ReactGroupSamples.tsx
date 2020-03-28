@@ -6,6 +6,7 @@ import { IReactGroupSampleState } from "../components/IReactGroupSampleState";
 import { WebPartTitle } from "@pnp/spfx-controls-react/lib/WebPartTitle";
 import { CheckMyMemberShip } from "./CheckMyMemberShip/CheckMyMemberShip";
 import { CheckUserMemberShip } from "./CheckUserMemberShip/CheckUserMemberShip";
+import { CheckGroupMembers } from "./CheckGroupMembers/CheckGroupMembers";
 import { Pivot, PivotItem } from 'office-ui-fabric-react/lib/Pivot';
 export default class ReactGroupSamples extends React.Component<IReactGroupSamplesProps, IReactGroupSampleState> {
 
@@ -49,8 +50,7 @@ export default class ReactGroupSamples extends React.Component<IReactGroupSample
                 <CheckUserMemberShip context={this.props.context}/>
               }
               {this.state.selectedKey === 'GroupMembers' &&
-              <p>Check Group Members</p>
-                // <CheckGroupMembers context={this.props.context} />
+                <CheckGroupMembers context={this.props.context}/>
               }
               {this.state.selectedKey === 'MyMemberShip' &&
                 <CheckMyMemberShip context={this.props.context} />

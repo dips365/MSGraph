@@ -1,5 +1,6 @@
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { SPHttpClient,MSGraphClient } from "@microsoft/sp-http";
+import { arraysEqual } from "office-ui-fabric-react/lib/Utilities";
 
 export class MsGraphService{
 
@@ -76,5 +77,24 @@ export class MsGraphService{
     }
     console.log('MSGraphService.GetGroupMembers: ', users);
     return users;
+  }
+
+  public static async GetOrganizationGroups(context:WebPartContext):Promise<any>{
+    let  allGroups:string[] = [];
+    try {
+      let client:MSGraphClient = await context.msGraphClientFactory.getClient().then();
+      let response = await client
+      .api("/groups")
+      .version("v1.0")
+      .select(['description','displayName','groupTypes','mailEnabled','mailNickname','securityEnabled']).get();
+
+      response.value.map((group:any)=>{
+        allGroups.push(group);
+      });
+    } catch (error) {
+      console.log("MSGraphService.GetOrganizationGroups Error: ", error);
+    }
+    console.log("MSGraphService.GetOrganizationGroups Error: ",allGroups);
+    return allGroups;
   }
 }
