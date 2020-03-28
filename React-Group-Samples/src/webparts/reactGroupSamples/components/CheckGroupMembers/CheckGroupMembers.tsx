@@ -142,9 +142,10 @@ public render():React.ReactElement<{}>{
           disabled={false}
           selectedItems={this._GetGroupMembers}
           showHiddenInUI={false}
-          principalTypes={[PrincipalType.DistributionList, PrincipalType.SecurityGroup, PrincipalType.SharePointGroup]}
+          principalTypes={[PrincipalType.DistributionList, PrincipalType.SecurityGroup]}
           resolveDelay={1000} />
       <br/>
+      <p className={styles.memberStatus}>Group ID: {this.state.GroupId}</p>
       {this.state.loading &&
           <Spinner label='Loading...' ariaLive='assertive' />
       }
@@ -158,9 +159,6 @@ public render():React.ReactElement<{}>{
                   className={styles.filterTextfield}
                 />
             </div>
-            {/* <div className={styles.column}>
-              <p className={styles.memberStatus}>{this.state.GroupId}</p>
-            </div> */}
             <div className={styles.column}>
             </div>
           </div><br/>

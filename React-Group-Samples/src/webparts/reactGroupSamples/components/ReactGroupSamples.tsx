@@ -7,7 +7,9 @@ import { WebPartTitle } from "@pnp/spfx-controls-react/lib/WebPartTitle";
 import { CheckMyMemberShip } from "./CheckMyMemberShip/CheckMyMemberShip";
 import { CheckUserMemberShip } from "./CheckUserMemberShip/CheckUserMemberShip";
 import { CheckGroupMembers } from "./CheckGroupMembers/CheckGroupMembers";
-import { Pivot, PivotItem } from 'office-ui-fabric-react/lib/Pivot';
+import { GetOrganizationGroups } from "./GetOrganizationGroups/GetOrganizationGroups";
+import { Pivot, PivotItem,PivotLinkFormat, PivotLinkSize } from 'office-ui-fabric-react/lib/Pivot';
+
 export default class ReactGroupSamples extends React.Component<IReactGroupSamplesProps, IReactGroupSampleState> {
 
   constructor(props:IReactGroupSamplesProps){
@@ -39,14 +41,33 @@ export default class ReactGroupSamples extends React.Component<IReactGroupSample
 
             <Pivot headersOnly={true}
               selectedKey ={this.state.selectedKey}
-              onLinkClick = {this._handleLinkClick}>
+              onLinkClick = {this._handleLinkClick}
+              linkSize={PivotLinkSize.normal}
+              linkFormat={PivotLinkFormat.tabs}
+              >
 
-              <PivotItem headerText='Check User Membership' itemKey='UserMembership' ></PivotItem>
-              <PivotItem headerText='Check Group Members' itemKey='GroupMembers'></PivotItem>
-              <PivotItem headerText='Check My Groups' itemKey="MyMemberShip"></PivotItem>
+              <PivotItem 
+                headerText='Check User Membership' 
+                itemKey='UserMembership'
+                itemIcon="Group" ></PivotItem>
+                <PivotItem 
+                  headerText='Check Group Members' 
+                  itemKey='GroupMembers' 
+                  itemIcon="HomeGroup"></PivotItem>
+                <PivotItem 
+                  headerText='Check My Groups' 
+                  itemKey="MyMemberShip"
+                  itemIcon="SharepointLogoInverse"></PivotItem>
+                <PivotItem 
+                  headerText='Get All Groups'  
+                  itemKey="GetAllGroups" 
+                  itemIcon="Group"></PivotItem>
+                 <PivotItem 
+                  headerText='Get Group Events'  
+                  itemKey="GetGroupEvents" 
+                  itemIcon="SharepointLogoInverse"></PivotItem>
             </Pivot><br/>
-
-            {this.state.selectedKey === 'UserMembership' &&
+             {this.state.selectedKey === 'UserMembership' &&
                 <CheckUserMemberShip context={this.props.context}/>
               }
               {this.state.selectedKey === 'GroupMembers' &&
@@ -54,6 +75,9 @@ export default class ReactGroupSamples extends React.Component<IReactGroupSample
               }
               {this.state.selectedKey === 'MyMemberShip' &&
                 <CheckMyMemberShip context={this.props.context} />
+              }
+              {this.state.selectedKey === "GetAllGroups" &&
+                <GetOrganizationGroups context={this.props.context}/>
               }
            </div>
           </div>

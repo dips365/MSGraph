@@ -86,8 +86,7 @@ export class MsGraphService{
       let response = await client
       .api("/groups")
       .version("v1.0")
-      .select(['description','displayName','groupTypes','mailEnabled','mailNickname','securityEnabled']).get();
-
+      .select(['description','displayName','groupTypes','mailEnabled','mailNickname','securityEnabled','visibility']).get();
       response.value.map((group:any)=>{
         allGroups.push(group);
       });

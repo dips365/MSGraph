@@ -183,19 +183,19 @@ export class CheckMyMemberShip extends React.Component<ICheckMyMemberShipProps,I
         }
         {this.state.groupItems.length > 0 &&
            <div className={styles.detailsList}>
-             <div className={styles.row}>
-              <div className={styles.column}>
-                  <TextField
-                  label='Filter by Name:'
-                  onChange={this._onFilter}
-                  className={styles.filterTextfield}
-                  />
-                </div>
+              <div className={styles.row}>
                 <div className={styles.column}>
-                  <p>Add CSV Link</p>
+                    <TextField
+                    label='Filter by Name:'
+                    onChange={this._onFilter}
+                    className={styles.filterTextfield}
+                    />
+                  </div>
+                  <div className={styles.column}>
+                    <p>Add CSV Link</p>
+                  </div>
                 </div>
-              </div>
-              <br/>
+                <br/>
                 <DetailsList
                   items={this.state.groupItems}
                   columns = {this.state.columns}

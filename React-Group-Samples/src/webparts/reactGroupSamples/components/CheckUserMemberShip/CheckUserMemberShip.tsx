@@ -6,9 +6,8 @@ import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import { DetailsList, DetailsListLayoutMode, IColumn, SelectionMode } from 'office-ui-fabric-react/lib/DetailsList';
 import { CommandBarButton } from 'office-ui-fabric-react/lib/Button';
 import { Spinner } from 'office-ui-fabric-react/lib/Spinner';
-import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
-import { ICheckUserMemberShipProps } from "./CheckUserMemberShipProps";
-import { ICheckUserMemberShipState  } from "./CheckUserMemberShipState";
+import { ICheckUserMemberShipProps } from "./ICheckUserMemberShipProps";
+import { ICheckUserMemberShipState  } from "./ICheckUserMemberShipState";
 import { MsGraphService } from "../../../../Service/MsGraphService";
 import { Environment,EnvironmentType } from "@microsoft/sp-core-library";
 import { IGroupItem } from "../../../../Common/IGroupItem";
@@ -118,6 +117,9 @@ export class CheckUserMemberShip extends React.Component<ICheckUserMemberShipPro
     });
   }
 
+  /**
+   * 
+   */
   private _getUserGroups = (items:any[])=>{
     this.setState({loading:true},async()=>{
       let groupItems: IGroupItem[] = [];
