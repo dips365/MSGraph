@@ -13,7 +13,7 @@ import { MsGraphService } from "../../../../Service/MsGraphService";
 import { Environment,EnvironmentType } from "@microsoft/sp-core-library";
 import { IGroupItem } from "../../../../Common/IGroupItem";
 import { GroupShowAll } from "office-ui-fabric-react/lib/GroupedList";
-
+import { CSVLink } from 'react-csv';
 export class CheckMyMemberShip extends React.Component<ICheckMyMemberShipProps,ICheckMyMemberShipState>{
   private groupItems:IGroupItem[] = [];
   private headers = [
@@ -192,8 +192,14 @@ export class CheckMyMemberShip extends React.Component<ICheckMyMemberShipProps,I
                     />
                   </div>
                   <div className={styles.column}>
-                    <p>Add CSV Link</p>
-                  </div>
+                    <CSVLink className={styles.csvLink}
+                      data={this.state.groupItems}
+                      headers={this.headers}
+                      filename={'UserGroups.csv'}
+                      >
+                      <CommandBarButton className={styles.exportIcon} iconProps={{ iconName: 'ExcelLogoInverse' }} text='Export to Excel' />
+                    </CSVLink>
+                </div>
                 </div>
                 <br/>
                 <DetailsList

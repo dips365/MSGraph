@@ -3,9 +3,9 @@
   "solution": {
     "name": "react-group-samples-client-side-solution",
     "id": "84bd4efc-eec8-4c97-84ee-b95d981b880b",
-    "version": "2.0.0.0",
+    "version": "3.0.0.0",
     "includeClientSideAssets": true,
-    "isDomainIsolated": false,
+    "isDomainIsolated": true,
     "webApiPermissionRequests": [
       {
         "resource": "Microsoft Graph",

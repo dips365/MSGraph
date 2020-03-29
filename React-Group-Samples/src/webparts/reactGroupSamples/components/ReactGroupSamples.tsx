@@ -46,26 +46,22 @@ export default class ReactGroupSamples extends React.Component<IReactGroupSample
               linkFormat={PivotLinkFormat.tabs}
               >
 
-              <PivotItem 
-                headerText='Check User Membership' 
+              <PivotItem
+                headerText='Check User Membership'
                 itemKey='UserMembership'
                 itemIcon="Group" ></PivotItem>
-                <PivotItem 
-                  headerText='Check Group Members' 
-                  itemKey='GroupMembers' 
+                <PivotItem
+                  headerText='Check Group Members'
+                  itemKey='GroupMembers'
                   itemIcon="HomeGroup"></PivotItem>
-                <PivotItem 
-                  headerText='Check My Groups' 
+                <PivotItem
+                  headerText='Check My Groups'
                   itemKey="MyMemberShip"
                   itemIcon="SharepointLogoInverse"></PivotItem>
-                <PivotItem 
-                  headerText='Get All Groups'  
-                  itemKey="GetAllGroups" 
+                <PivotItem
+                  headerText='Get All Groups'
+                  itemKey="GetAllGroups"
                   itemIcon="Group"></PivotItem>
-                 <PivotItem 
-                  headerText='Get Group Events'  
-                  itemKey="GetGroupEvents" 
-                  itemIcon="SharepointLogoInverse"></PivotItem>
             </Pivot><br/>
              {this.state.selectedKey === 'UserMembership' &&
                 <CheckUserMemberShip context={this.props.context}/>

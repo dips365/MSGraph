@@ -9,7 +9,7 @@ import { ICheckGroupMembersProps } from "./CheckGroupMembersProps";
 import { ICheckGroupMembersState } from "./CheckGroupMembersState";
 import { MsGraphService } from "../../../../Service/MsGraphService";
 import { IUserItem } from "../../../../Common/IUserItem";
-
+import { CSVLink } from "react-csv";
 
 export class CheckGroupMembers extends React.Component<ICheckGroupMembersProps,ICheckGroupMembersState>{
   private userItems: IUserItem[] = [];
@@ -166,6 +166,15 @@ public render():React.ReactElement<{}>{
             <div className={styles.column}>
               <p className={styles.memberStatus}>Group ID: {this.state.GroupId}</p>
             </div>
+            <div className={styles.column}>
+                  <CSVLink className={styles.csvLink}
+                    data={this.state.userItems}
+                    headers={this.headers}
+                    filename={'UserGroups.csv'}
+                    >
+                    <CommandBarButton className={styles.exportIcon} iconProps={{ iconName: 'ExcelLogoInverse' }} text='Export to Excel' />
+                  </CSVLink>
+                </div>
           </div><br/>
           <DetailsList
               items={this.state.userItems}

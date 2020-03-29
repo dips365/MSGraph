@@ -9,7 +9,8 @@ import { IGetOrganizationGroupsState } from "./GetOrganizationGroupsState";
 import { MsGraphService } from "../../../../Service/MsGraphService";
 import { Environment,EnvironmentType } from "@microsoft/sp-core-library";
 import { IAllGroupItems } from "../../../../Common/IAllGroupItems";
-
+import { CommandBarButton } from 'office-ui-fabric-react/lib/Button';
+import { CSVLink } from "react-csv";
 
 export class GetOrganizationGroups extends React.Component<IGetOrganizationGroupsProps,IGetOrganizationGroupsState>{
     private OrganizationGroups:IAllGroupItems[] = [];
@@ -94,8 +95,8 @@ constructor(props:IGetOrganizationGroupsProps){
             maxWidth: 200,
             isResizable: true
         },
-        
-        ]; 
+
+        ];
 
         this.state = {
             columns:columns,
@@ -106,7 +107,7 @@ constructor(props:IGetOrganizationGroupsProps){
     }
 
     /**
-     * 
+     *
      */
     private _onColumnClick = (ev:React.MouseEvent<HTMLElement>,column:IColumn):void=>{
     const {columns,allGroupsItems} = this.state;
@@ -157,9 +158,9 @@ constructor(props:IGetOrganizationGroupsProps){
       this.setState({loading:true},async()=>{
         let groupItems: IAllGroupItems[] = [];
         let memberStatus: string = '';
-        
+
         try {
-            
+
         let allGroups = await MsGraphService.GetOrganizationGroups(this.props.context);
         if(allGroups.length === 0){
             memberStatus = 'There is no grouop found in directory';
@@ -179,15 +180,15 @@ constructor(props:IGetOrganizationGroupsProps){
         }
         console.log('CheckUserMembership._getUserGroups: ', groupItems);
         this.OrganizationGroups = groupItems;
-        this.setState({ 
-            allGroupsItems:this.OrganizationGroups, 
-            memberStatus, 
-            loading: false 
+        this.setState({
+            allGroupsItems:this.OrganizationGroups,
+            memberStatus,
+            loading: false
         });
       });
   }
 
-  
+
    /**
    * Get my groups using Graph API once the toggle button is on
    */
@@ -227,8 +228,14 @@ public render():React.ReactElement<IGetOrganizationGroupsProps>{
                     />
                   </div>
                   <div className={styles.column}>
-                    <p>Add CSV Link</p>
-                  </div>
+                    <CSVLink className={styles.csvLink}
+                      data={this.state.allGroupsItems}
+                      headers={this.headers}
+                      filename={'UserGroups.csv'}
+                      >
+                      <CommandBarButton className={styles.exportIcon} iconProps={{ iconName: 'ExcelLogoInverse' }} text='Export to Excel' />
+                    </CSVLink>
+                </div>
                 </div>
                 <br/>
                 <DetailsList
