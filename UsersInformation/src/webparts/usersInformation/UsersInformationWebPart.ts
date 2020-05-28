@@ -10,7 +10,6 @@ import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import * as strings from 'UsersInformationWebPartStrings';
 import UsersInformation from './components/UsersInformation';
 import { IUsersInformationProps } from './components/IUsersInformationProps';
-
 export interface IUsersInformationWebPartProps {
   description: string;
 }

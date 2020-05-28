@@ -12,29 +12,40 @@ export default class GetUserCountry extends React.Component<IGetUserCountryProps
     this.state = {
       isLoading:false
     };
-
-    this._GetUserCountry();
   }
   
-  private _GetUserCountry = () =>{
-    try {
-      this.setState({
-        isLoading:true
-      },async()=>{
-        let email :string = "d1@techinsider.onmicrosoft.com";
-        let country = await this.props.MsGraphServiceInstance.getUserCountry(email,this.props.context);
-        if(country){
-          Log.info("_GetUserCountry()",country);
-        }
-        else
-        {
-          Log.info("_GetUserCountry()",country);
-        }
-      });
-    } catch (error) {
+ private _GetUserCountry = async () =>{
+    let email :string = "d1@techinsider.onmicrosoft.com";
+    let country = await this.props.MsGraphServiceInstance.getUserCountry(email,this.props.context);
+    if(country){
+      console.log(country);
       
     }
-  }
+ }
+
+ public componentDidMount(){
+   this._GetUserCountry();
+ }
+ 
+
+  // private _GetUserCountry = () =>{
+  //   try {
+  //     this.setState({
+  //       isLoading:true
+  //     },async()=>{
+  //       let country = await this.props.MsGraphServiceInstance.getUserCountry(email,this.props.context);
+  //       if(country){
+  //         Log.info("_GetUserCountry()",country);
+  //       }
+  //       else
+  //       {
+  //         Log.info("_GetUserCountry()",country);
+  //       }
+  //     });
+  //   } catch (error) {
+  //     Log.error("_GetUserCountry():", error);
+  //   }
+  // }
   
   
   public render(): React.ReactElement<IGetUserCountryProps> {
