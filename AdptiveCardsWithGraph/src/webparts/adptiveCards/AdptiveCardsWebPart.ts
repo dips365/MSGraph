@@ -7,28 +7,24 @@ import {
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
-import { MSGraphService } from "../../Services/MSGraphService";
+import * as strings from 'AdptiveCardsWebPartStrings';
+import AdptiveCards from './components/AdptiveCards';
+import { IAdptiveCardsProps } from './components/IAdptiveCardsProps';
+import { MSGraphService } from '../../Services/MSGraphService';
 
-import * as strings from 'UsersInformationWebPartStrings';
-import UsersInformation from './components/UsersInformation';
-import { IUsersInformationProps } from './components/IUsersInformationProps';
-
-export interface IUsersInformationWebPartProps {
+export interface IAdptiveCardsWebPartProps {
   description: string;
 }
 
-export default class UsersInformationWebPart extends BaseClientSideWebPart <IUsersInformationWebPartProps> {
-  private MsGraphServiceInstance:MSGraphService;
-  
-
-
+export default class AdptiveCardsWebPart extends BaseClientSideWebPart <IAdptiveCardsWebPartProps> {
+  private MSGraphInstance:MSGraphService
   public render(): void {
-    const element: React.ReactElement<IUsersInformationProps> = React.createElement(
-      UsersInformation,
+    const element: React.ReactElement<IAdptiveCardsProps> = React.createElement(
+      AdptiveCards,
       {
         description: this.properties.description,
         context:this.context,
-        MSGraphServiceInstance:this.MsGraphServiceInstance
+        MSGraphInstance:this.MSGraphInstance
       }
     );
 
@@ -41,7 +37,9 @@ export default class UsersInformationWebPart extends BaseClientSideWebPart <IUse
 
   protected async onInit(){
     await super.onInit();
-    this.MsGraphServiceInstance = new MSGraphService();
+
+    this.MSGraphInstance = new MSGraphService();
+
   }
 
   protected get dataVersion(): Version {

@@ -10,7 +10,8 @@ export default class GetUserCountry extends React.Component<IGetUserCountryProps
     super(props);
 
     this.state = {
-      isLoading:false
+      isLoading:false,
+      country:''
     };
   }
   
@@ -18,7 +19,9 @@ export default class GetUserCountry extends React.Component<IGetUserCountryProps
     let email :string = "d1@techinsider.onmicrosoft.com";
     let country = await this.props.MsGraphServiceInstance.getUserCountry(email,this.props.context);
     if(country){
-      console.log(country);
+      this.setState({
+        country:country
+      });
       
     }
  }
@@ -57,9 +60,7 @@ export default class GetUserCountry extends React.Component<IGetUserCountryProps
               <span className={ styles.title }>Welcome to SharePoint!</span>
               <p className={ styles.subTitle }>Customize SharePoint experiences using Web Parts.</p>
               <p className={ styles.description }>{escape(this.props.description)}</p>
-              <a href="https://aka.ms/spfx" className={ styles.button }>
-                <span className={ styles.label }>Learn more</span>
-              </a>
+              <p className={styles.description}>{escape(this.state.country)}</p>  
             </div>
           </div>
         </div>
