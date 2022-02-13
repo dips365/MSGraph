@@ -41,7 +41,7 @@
     "@types/jest": "25.2.3",
     "@types/mocha": "2.2.38",
     "@types/react-csv": "^1.1.1",
-    "ajv": "~5.2.2",
+    "ajv": "~6.12.3",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
     "gulp": "~3.9.1",
